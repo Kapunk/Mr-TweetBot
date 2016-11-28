@@ -17,7 +17,7 @@ public class twitter {
 	public static void main(String[] args) throws TwitterException {
 		// TODO Auto-generated method stub
 		
-		 
+		 enviarTweet("hola");
 
 	}
 	/*
@@ -26,12 +26,9 @@ public class twitter {
 	 */
 	public static void enviarTweet(String Mensaje) throws TwitterException{
 	       Twitter twitter;
-	        ConfigurationBuilder cb = new ConfigurationBuilder();
-	        cb.setDebugEnabled(true)
-	                .setOAuthConsumerKey("")
-	                .setOAuthConsumerSecret("")
-	                .setOAuthAccessToken("")
-	                .setOAuthAccessTokenSecret("");
+	       
+	       ConfigurationBuilder cb = credencial.credencial.credencialTwitter();
+	       
 	        twitter = new TwitterFactory(cb.build()).getInstance();
 	 
 	 
