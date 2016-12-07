@@ -22,6 +22,10 @@ public class bbdd {
   	
  }
  
+ /**
+  * Se ejecutara solo la primera vez para crear la BBDD y darle la configuracion inicial
+  * @throws SQLException
+  */
  public static void crearBBDD() throws SQLException{
 	 
 //	EmbeddedDataSource embeddedDataSource = new EmbeddedDataSource();
@@ -40,7 +44,7 @@ public class bbdd {
 	 
  }
  
- public static ResultSetMetaData consultarBBDD(String consulta) throws SQLException{
+ public static java.sql.ResultSet consultarBBDD(String consulta) throws SQLException{
 	 
 	   EmbeddedDataSource embeddedDataSource = new EmbeddedDataSource();
 	   embeddedDataSource.setDatabaseName("mrtweetbot");
@@ -48,8 +52,25 @@ public class bbdd {
 	 
 	   java.sql.ResultSet rs =  con.createStatement().executeQuery(consulta);
 	   ResultSetMetaData metadata = ((java.sql.ResultSet) rs).getMetaData();
+	   
+	 //Imprimimos la cabecera de la tabla
+       int columnas = metadata.getColumnCount();
+       for (int i = 1; i <= columnas; i++) {
+           System.out.format("%15s", metadata.getColumnName(i) + " || ");
+       }
+
+       while (rs.next()) {
+           //Imprimimos cada una de las filas de la tabla
+           System.out.println("");
+           for (int j = 1; j <= columnas; j++) {
+                System.out.format("%15s", rs.getString(j) + " || ");
+           }
+       }
+
+
+       if (con != null)  con.close();
 	
-	   return metadata;
+	   return rs;
  }
  
  public static void insertarEnBBDD (String insertar) throws SQLException{
@@ -61,7 +82,6 @@ public class bbdd {
       
    con.createStatement().execute(insertar);
    con.close();
-   System.out.println("Se ha creado la tabla correctamente");
 	 
 	 
  }
