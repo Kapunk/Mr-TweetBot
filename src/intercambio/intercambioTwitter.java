@@ -5,6 +5,7 @@ import java.util.List;
 import twitter.twitter;
 import twitter4j.Status;
 import twitter4j.TwitterException;
+import twitter4j.User;
 
 public class intercambioTwitter {
 
@@ -24,8 +25,8 @@ public class intercambioTwitter {
 	 * @throws TwitterException 
 	 */
 	
-	@SuppressWarnings({ "null", "rawtypes" })
-	public static List leerTweetUsuario(String usuario) throws TwitterException {
+	@SuppressWarnings({ "null" })
+	public static List<String> leerTweetUsuario(String usuario) throws TwitterException {
 		
 		List<Status> statuses;	
 		List<String> tweets = null;
@@ -41,5 +42,29 @@ public class intercambioTwitter {
 		return tweets;
        
     }
+	
+	
+	/**
+	 * Funcion para leer los amigos del usuario que le pasemos
+	 * @param usuario
+	 * @return
+	 * @throws TwitterException
+	 */
+	@SuppressWarnings("null")
+	public static List<String> leerListaAmigos(String usuario) throws TwitterException {
+	       
+		List<String> usuarios = null;
+		List<User> nombresUsuario;
+		
+		nombresUsuario = twitter.obtenerListaAmigos(usuario);
+		 for (User user : nombresUsuario) {
+		      System.out.println("@" + user.getName());
+		      usuarios.add(user.getName());
+		      }
+	 
+		return usuarios;
+	    }
+	
+	
 
 }

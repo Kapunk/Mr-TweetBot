@@ -50,7 +50,7 @@ public class twitter {
 	 * @param usuario
 	 * @return
 	 */
-	public List<User> obtenerListaAmigos(String usuario) {
+	public static List<User> obtenerListaAmigos(String usuario) {
 		
         ConfigurationBuilder cb = credencial.credencialTwitter();
         TwitterFactory tf = new TwitterFactory(cb.build());
