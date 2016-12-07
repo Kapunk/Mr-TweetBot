@@ -11,17 +11,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class twitter {
-
-	/**
-	 * @param args
-	 * @throws TwitterException 
-	 */
-	public static void main(String[] args) throws TwitterException {
-		// TODO Auto-generated method stub
-		
-		 leerTweetUsuario("");
-
-	}
 	
 	/**
 	 * Metodo para el envio de tweets
@@ -31,12 +20,9 @@ public class twitter {
 	public static void enviarTweet(String Mensaje) throws TwitterException{
 	       Twitter twitter;
 	       
-	       ConfigurationBuilder cb = credencial.credencialTwitter();
-	       
-	        twitter = new TwitterFactory(cb.build()).getInstance();
-	 
-	 
-	        Status tweetEnviado = twitter.updateStatus(Mensaje);      
+	       ConfigurationBuilder cb = credencial.credencialTwitter();	       
+	       twitter = new TwitterFactory(cb.build()).getInstance();	 
+	       Status tweetEnviado = twitter.updateStatus(Mensaje);      
 	 
 	    }
 	
@@ -49,7 +35,6 @@ public class twitter {
 	public static List<Status> leerTweetUsuario(String usuario) throws TwitterException {
 
         Twitter twitter = new TwitterFactory().getInstance();
-//        try {
             ConfigurationBuilder cb = credencial.credencialTwitter();
 
             TwitterFactory tf = new TwitterFactory(cb.build());
@@ -57,16 +42,6 @@ public class twitter {
             List<Status> statuses;
             statuses = twitter1.getUserTimeline(usuario);
             return statuses;
-//            System.out.println("Mostrando los tweets de @" + usuario);
-//            for (Status status : statuses) {
-//                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-//            }
-//        } catch (TwitterException te) {
-//            te.printStackTrace();
-//            System.out.println("Failed to get timeline: " + te.getMessage());
-//            System.exit(-1);
-//        }
-		
 		
     }
 
