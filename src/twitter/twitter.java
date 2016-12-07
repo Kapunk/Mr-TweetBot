@@ -43,28 +43,31 @@ public class twitter {
 	/**
 	 * Metodo para leer los tweets de un usuario
 	 * @param usuario
+	 * @throws TwitterException 
 	 */
 	
-	public static void leerTweetUsuario(String usuario) {
+	public static List<Status> leerTweetUsuario(String usuario) throws TwitterException {
 
         Twitter twitter = new TwitterFactory().getInstance();
-        try {
+//        try {
             ConfigurationBuilder cb = credencial.credencialTwitter();
 
             TwitterFactory tf = new TwitterFactory(cb.build());
             Twitter twitter1 = tf.getInstance();
             List<Status> statuses;
             statuses = twitter1.getUserTimeline(usuario);
-            
-            System.out.println("Mostrando los tweets de @" + usuario);
-            for (Status status : statuses) {
-                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-            }
-        } catch (TwitterException te) {
-            te.printStackTrace();
-            System.out.println("Failed to get timeline: " + te.getMessage());
-            System.exit(-1);
-        }
+            return statuses;
+//            System.out.println("Mostrando los tweets de @" + usuario);
+//            for (Status status : statuses) {
+//                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+//            }
+//        } catch (TwitterException te) {
+//            te.printStackTrace();
+//            System.out.println("Failed to get timeline: " + te.getMessage());
+//            System.exit(-1);
+//        }
+		
+		
     }
 
 }
