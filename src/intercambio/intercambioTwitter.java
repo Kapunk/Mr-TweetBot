@@ -1,11 +1,14 @@
 package intercambio;
 
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import twitter.twitter;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 import twitter4j.User;
+import datos.*;
 
 public class intercambioTwitter {
 
@@ -13,9 +16,13 @@ public class intercambioTwitter {
 	 * Metodo para el envio de tweets
 	 * @param Mensaje
 	 * @throws TwitterException
+	 * @throws SQLException 
 	 */
-	public static void enviarTweet(String Mensaje) throws TwitterException {
+	public static void enviarTweet(String Mensaje) throws TwitterException, SQLException {
 	       twitter.enviarTweet(Mensaje);
+	       java.util.Date fecha = new Date();
+	       // Guardamos en BBDD los tweets que vamos enviando
+	       bbdd.insertarEnBBDD("Insert into tweetEnviado values (" + Mensaje + " 'usuario' "+ fecha + " )");
 	 
 	    }
 	
@@ -24,22 +31,13 @@ public class intercambioTwitter {
 	 * @param usuario
 	 * @throws TwitterException 
 	 */
-	
-	@SuppressWarnings({ "null" })
-	public static List<String> leerTweetUsuario(String usuario) throws TwitterException {
+	public static List<Status> leerTweetUsuario(String usuario) throws TwitterException {
 		
 		List<Status> statuses;	
-		List<String> tweets = null;
 		
 		statuses = twitter.leerTweetUsuario(usuario);
-		
-      for (Status status : statuses) {
-      System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-      tweets.add(status.getText());
-      }
-
 			
-		return tweets;
+		return statuses;
        
     }
 	
@@ -50,19 +48,14 @@ public class intercambioTwitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	@SuppressWarnings("null")
-	public static List<String> leerListaAmigos(String usuario) throws TwitterException {
+	public static List<User> leerListaAmigos(String usuario) throws TwitterException {
 	       
-		List<String> usuarios = null;
 		List<User> nombresUsuario;
 		
 		nombresUsuario = twitter.obtenerListaAmigos(usuario);
-		 for (User user : nombresUsuario) {
-		      System.out.println("@" + user.getName());
-		      usuarios.add(user.getName());
-		      }
+
 	 
-		return usuarios;
+		return nombresUsuario;
 	    }
 	
 	

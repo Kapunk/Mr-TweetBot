@@ -2,7 +2,7 @@ package bot;
 
 import java.util.List;
 
-import twitter.twitter;
+import intercambio.*;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 import twitter4j.User;
@@ -14,14 +14,14 @@ public class bot {
 	 */
 	public static void main(String[] args) {
 		try {
-			List<User> amigos = twitter.obtenerListaAmigos("Chistian95");
+			List<User> amigos = intercambioTwitter.leerListaAmigos("Chistian95");
 			if(amigos.size() > 0) {
 				int rnd = (int) (Math.random() * amigos.size());
 				User amigoRandom = amigos.get(rnd);
 				System.out.println("Follower escogido: " + amigoRandom.getScreenName());	
 				
 				Status maxRT = null;
-				List<Status> tweets = twitter.leerTweetUsuario(amigoRandom.getScreenName());
+				List<Status> tweets = intercambioTwitter.leerTweetUsuario(amigoRandom.getScreenName());
 				for(int i=0; i<tweets.size(); i++) {
 					Status tweet = tweets.get(i);
 					if(maxRT == null || (!tweet.isRetweet() && tweet.getRetweetCount() > maxRT.getRetweetCount())) {

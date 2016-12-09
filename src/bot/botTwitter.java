@@ -1,8 +1,11 @@
 
 package bot;
 
+import twitter4j.Status;
 import twitter4j.TwitterException;
+import twitter4j.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import intercambio.*;
@@ -17,7 +20,7 @@ public class botTwitter {
 	 * @throws TwitterException
 	 */
 	@SuppressWarnings("unchecked")
-	public static List<String> leerTweetsusuario(String usuario) throws TwitterException {
+	public static List<Status> leerTweetsusuario(String usuario) throws TwitterException {
 		// TODO Auto-generated method stub
 		
 		return intercambioTwitter.leerTweetUsuario(usuario);
@@ -29,8 +32,9 @@ public class botTwitter {
 	 * Funcion para construir los tweets a enviar
 	 * @param mensaje
 	 * @throws TwitterException
+	 * @throws SQLException 
 	 */
-	public static void construirTweet(String mensaje) throws TwitterException{
+	public static void construirTweet(String mensaje) throws TwitterException, SQLException{
 		
 		intercambioTwitter.enviarTweet(mensaje);
 	}
@@ -41,7 +45,7 @@ public class botTwitter {
 	 * @return
 	 * @throws TwitterException
 	 */
-	public static List<String> leerAmigosUsuario(String usuario) throws TwitterException{
+	public static List<User> leerAmigosUsuario(String usuario) throws TwitterException{
 		
 		return intercambioTwitter.leerListaAmigos(usuario);
 	}

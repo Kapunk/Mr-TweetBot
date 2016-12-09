@@ -28,19 +28,26 @@ public class bbdd {
   */
  public static void crearBBDD() throws SQLException{
 	 
-//	EmbeddedDataSource embeddedDataSource = new EmbeddedDataSource();
-//    embeddedDataSource.setDatabaseName("mrtweetbot");
-//    embeddedDataSource.setCreateDatabase("create"); 
+	EmbeddedDataSource embeddedDataSource = new EmbeddedDataSource();
+    embeddedDataSource.setDatabaseName("mrtweetbot");
+    embeddedDataSource.setCreateDatabase("create"); 
 // 
-//    Connection con = embeddedDataSource.getConnection();
+    Connection con = embeddedDataSource.getConnection();
 //    con.createStatement().execute("create table usuario( id_usuario INT PRIMARY KEY, " +
 //                                            "usuario varchar(20), " + 
 //                                            "password varchar(20) )");
+//	  con.createStatement().execute("create table tweetEnviado( id_usuario INT GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
+//									  "tweet varchar(200), " +
+//									  "usuario varchar(100), " +
+//									  "fecha date )");
 //    
 //    con.createStatement().execute("insert into usuario values " + 
 //                                            "(1, 'kepa', 'kepa')");
 //    con.close();
 //    System.out.println("Se ha creado la tabla correctamente");
+	 
+	 
+	 
 	 
  }
  
