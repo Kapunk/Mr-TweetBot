@@ -37,5 +37,7 @@
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.21.jar"/>
 	<classpathentry kind="lib" path="lib/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kepa.munoz/git/Mr-TweetBot/lib/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kepa.munoz/git/Mr-TweetBot/lib/jdom.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
